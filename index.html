@@ -23,6 +23,10 @@
       font-size: 34px;
     }
 
+    header p {
+      margin-top: 10px;
+    }
+
     section {
       max-width: 1200px;
       margin: auto;
@@ -36,11 +40,37 @@
       margin-top: 50px;
     }
 
+    h3 {
+      color: #8d6e00;
+      margin-top: 35px;
+    }
+
     iframe {
       width: 100%;
       height: 800px;
       border: none;
       margin-top: 25px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 25px;
+      background: #ffffff;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f4c430;
+    }
+
+    ul {
+      margin-left: 20px;
     }
 
     footer {
@@ -68,20 +98,99 @@
   <h2>📊 Descripción del proyecto</h2>
   <p>
     Este sitio documenta el análisis salarial basado en la encuesta
-    <strong>Ask A Manager Salary Survey 2021</strong>.
+    <strong>Ask A Manager Salary Survey 2021</strong>. El proyecto integra
+    procesos de limpieza de datos, modelado analítico, normalización
+    geográfica y conversión monetaria para permitir comparaciones
+    homogéneas entre industrias y países.
+  </p>
+
+  <p>
+    El objetivo principal es analizar la relación entre industria,
+    experiencia profesional y compensación total anual, expresando
+    todos los valores monetarios en <strong>pesos colombianos (COP)</strong>.
   </p>
 
   <h2>📈 Dashboard interactivo</h2>
+  <p>
+    El dashboard fue desarrollado en <strong>Looker Studio</strong> y se
+    encuentra conectado al modelo de datos previamente transformado.
+  </p>
 
   <iframe
     src="https://lookerstudio.google.com/embed/reporting/64d26999-8da1-4997-953f-3b274fae0b56/page/Wc7mF"
     allowfullscreen>
   </iframe>
 
+  <h2>📚 Diccionario de Variables y Estructura de Datos</h2>
+
+  <table>
+    <tr>
+      <th>Variable</th>
+      <th>Tipo de Dato</th>
+      <th>Descripción Funcional</th>
+      <th>Ejemplo</th>
+    </tr>
+    <tr><td>Timestamp</td><td>Temporal</td><td>Fecha y hora de captura</td><td>2021-04-27 11:02:10</td></tr>
+    <tr><td>How old are you?</td><td>Categórica ordinal</td><td>Rango etario</td><td>25–34</td></tr>
+    <tr><td>What industry do you work in?</td><td>Categórica nominal</td><td>Sector económico</td><td>Education</td></tr>
+    <tr><td>Job title</td><td>Texto</td><td>Denominación del cargo</td><td>Librarian</td></tr>
+    <tr><td>Annual salary</td><td>Numérica continua</td><td>Salario anual en moneda original</td><td>55,000</td></tr>
+    <tr><td>Additional compensation</td><td>Numérica continua</td><td>Bonos e ingresos variables</td><td>0</td></tr>
+    <tr><td>Currency</td><td>Categórica nominal</td><td>Moneda reportada</td><td>USD</td></tr>
+    <tr><td>Country</td><td>Categórica nominal</td><td>País de trabajo</td><td>United States</td></tr>
+    <tr><td>City</td><td>Categórica nominal</td><td>Ciudad de trabajo</td><td>Boston</td></tr>
+  </table>
+
+  <h2>🔄 Variables de Transformación y Normalización (ETL)</h2>
+
+  <table>
+    <tr>
+      <th>Variable</th>
+      <th>Tipo</th>
+      <th>Descripción</th>
+    </tr>
+    <tr><td>Country_Normalized</td><td>Texto</td><td>País estandarizado</td></tr>
+    <tr><td>City_Normalized</td><td>Texto</td><td>Ciudad normalizada</td></tr>
+    <tr><td>salario_anual_cop</td><td>Numérica</td><td>Salario anual en COP</td></tr>
+    <tr><td>compensaciones_cop</td><td>Numérica</td><td>Compensaciones en COP</td></tr>
+    <tr><td>total_compensacion_cop</td><td>Numérica</td><td>Ingreso total anual en COP</td></tr>
+  </table>
+
+  <h3>Conversión de moneda</h3>
+  <ul>
+    <li>USD, GBP, CAD, EUR, AUD/NZD → COP</li>
+    <li>CHF, JPY, SEK, ZAR, HKD → COP</li>
+    <li>Para “Other”, se validó el campo de especificación manual</li>
+  </ul>
+
+  <h2>🧪 Notas metodológicas</h2>
+  <ul>
+    <li>Las variables ordinales conservan su jerarquía lógica</li>
+    <li>Las métricas monetarias se estandarizaron en COP</li>
+    <li>Los campos geográficos fueron normalizados</li>
+  </ul>
+
+  <h2>📘 Paso a paso del modelado</h2>
+  <ol>
+    <li>Carga de datos en Looker Studio</li>
+    <li>Limpieza y normalización de texto</li>
+    <li>Conversión monetaria</li>
+    <li>Creación de métricas agregadas</li>
+    <li>Construcción de visualizaciones</li>
+    <li>Actualización mediante reemplazo del archivo fuente</li>
+  </ol>
+
+  <h2>✅ Conclusión</h2>
+  <p>
+    El modelo permite analizar de forma clara la relación entre industria,
+    experiencia, nivel educativo y salario, garantizando comparabilidad
+    internacional mediante la conversión a pesos colombianos.
+  </p>
+
 </section>
 
 <footer>
-  Proyecto de Analytics – Dashboard & Documentación
+  Proyecto de Analytics – Documentación y Dashboard Integrado | Looker Studio
 </footer>
 
 </body>
